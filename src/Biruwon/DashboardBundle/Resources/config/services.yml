@@ -1,3 +1,7 @@
+imports:
+  - { resource: twitter.conf.yml}
+  - { resource: twitter.yml}
+
 parameters:
 #    dashboard.example.class: Biruwon\DashboardBundle\Example
 

@@ -1,3 +1,7 @@
 dashboard_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DashboardBundle:Default:index }
+
+dashboard_twitter:
+    pattern: /twitter/status
+    defaults: { _controller: DashboardBundle:Default:twitter }
