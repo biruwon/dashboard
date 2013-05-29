@@ -15,8 +15,20 @@ class DefaultController extends Controller
 
     public function twitterAction()
     {
-    	$twitterClient = $this->container->get('guzzle.twitter.client');
-    	$status = $twitterClient->get('statuses/user_timeline.json')
+        $twitterClient = $this->container->get('guzzle.twitter.client');
+        $status = $twitterClient->get('statuses/user_timeline.json')
+            ->send()->getBody();
+
+        return $this->render('DashboardBundle:Default:index.html.twig', array(
+            'status' => $status
+            )
+        );
+    }
+
+    public function facebookAction()
+    {
+    	$facebookClient = $this->container->get('guzzle.facebook.client');
+    	$status = $facebookClient->get('100003874467772')
     		->send()->getBody();
 
     	return $this->render('DashboardBundle:Default:index.html.twig', array(

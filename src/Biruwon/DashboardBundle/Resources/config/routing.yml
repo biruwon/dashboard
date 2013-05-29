@@ -5,3 +5,7 @@ dashboard_homepage:
 dashboard_twitter:
     pattern: /twitter/status
     defaults: { _controller: DashboardBundle:Default:twitter }
+
+dashboard_facebook:
+    pattern: /facebook/status
+    defaults: { _controller: DashboardBundle:Default:facebook }

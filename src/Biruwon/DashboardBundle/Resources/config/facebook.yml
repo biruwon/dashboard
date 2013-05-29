@@ -1,0 +1,15 @@
+parameters:
+  class.guzzle.response: Guzzle\Http\Message\Response
+  class.guzzle.client: Guzzle\Http\Client
+  class.guzzle.oauthplugin: Guzzle\Plugin\Oauth\OauthPlugin
+
+services:
+  guzzle.facebook.client:
+    class: %class.guzzle.client%
+    arguments: ["https://graph.facebook.com"]
+  #   calls:
+  #     - [addSubscriber, [@guzzle.facebook.oauthplugin]]
+
+  # guzzle.facebook.oauthplugin:
+  #   class: %class.guzzle.oauthplugin%
+  #   arguments: [%twitter.config%]
