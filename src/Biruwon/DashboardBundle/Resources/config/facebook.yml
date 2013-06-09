@@ -6,10 +6,10 @@ parameters:
 services:
   guzzle.facebook.client:
     class: %class.guzzle.client%
-    arguments: ["https://graph.facebook.com"]
-  #   calls:
-  #     - [addSubscriber, [@guzzle.facebook.oauthplugin]]
+    arguments: [%facebook.baseurl%]
+    calls:
+      - [addSubscriber, [@guzzle.facebook.oauthplugin]]
 
-  # guzzle.facebook.oauthplugin:
-  #   class: %class.guzzle.oauthplugin%
-  #   arguments: [%twitter.config%]
+  guzzle.facebook.oauthplugin:
+    class: %class.guzzle.oauthplugin%
+    arguments: [%facebook.config%]

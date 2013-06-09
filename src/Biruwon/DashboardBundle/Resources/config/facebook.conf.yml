@@ -1,0 +1,6 @@
+parameters:
+  facebook.baseurl: https://graph.facebook.com
+
+  facebook.config:
+    client_id: ***
+    client_secret: ***

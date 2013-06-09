@@ -28,8 +28,15 @@ class DefaultController extends Controller
     public function facebookAction()
     {
     	$facebookClient = $this->container->get('guzzle.facebook.client');
-    	$status = $facebookClient->get('100003874467772')
-    		->send()->getBody();
+
+        $token = $facebookClient->get(
+            '/oauth/access_token?client_id=***&client_secret=***&grant_type=client_credentials')
+        ->send()->getBody();
+
+        $access_token = substr($token, 13);
+
+    	$status = $facebookClient->get('100003874467772/picture/call?access_token='.$access_token)
+    		->send()->getEffectiveUrl();
 
     	return $this->render('DashboardBundle:Default:index.html.twig', array(
             'status' => $status
