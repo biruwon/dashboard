@@ -1,0 +1,9 @@
+<form action="{{ path('dashboard_profile') }}" method="post" {{ form_enctype(form) }}>
+
+	{{ form_errors(form) }}
+
+	{{ form_row(form.image) }}
+
+	{{ form_rest(form) }}
+
+</form>

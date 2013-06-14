@@ -2,25 +2,23 @@
 
 namespace Biruwon\DashboardBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Guzzle\Http\Client;
-use Guzzle\Plugin\Oauth\OauthPlugin;
+use Symfony\Component\DependencyInjection\ContainerAware,
+    Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Guzzle\Http\Client,
+    Guzzle\Plugin\Oauth\OauthPlugin;
 
-class DefaultController extends Controller
+class DefaultController extends ContainerAware
 {
-    public function indexAction($name)
-    {
-        return $this->render('DashboardBundle:Default:index.html.twig', array('name' => $name));
-    }
-
     public function twitterAction()
     {
         $twitterClient = $this->container->get('guzzle.twitter.client');
         $status = $twitterClient->get('statuses/user_timeline.json')
             ->send()->getBody();
 
-        return $this->render('DashboardBundle:Default:index.html.twig', array(
-            'status' => $status
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:Default:index.html.twig',
+                array(
+                    'status' => $status
             )
         );
     }
@@ -38,9 +36,42 @@ class DefaultController extends Controller
     	$status = $facebookClient->get('100003874467772/picture/call?access_token='.$access_token)
     		->send()->getEffectiveUrl();
 
-    	return $this->render('DashboardBundle:Default:index.html.twig', array(
-            'status' => $status
+    	return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:Default:index.html.twig',
+                array(
+                    'status' => $status
     		)
     	);
     }
+
+    public function showImageAction($id)
+    {
+        $em = $this->container->get('doctrine')->getEntityManager();
+
+        $image = $em->getRepository('Binary')->find($id);
+
+        if(empty($image)) {
+            throw new Exception("Image not found");
+        }
+
+        $response = new BinaryFileResponse($image);
+        $response->headers->set('Content-Type', $image->getMimeType());
+
+        return $reponse;
+    }
+
+    public function profileAction()
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $profile = $user->getProfile();
+
+        $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
+
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:Default:profile.html.twig',
+                array(
+                    'form' => $form->createView()
+                )
+        );
+     }
 }

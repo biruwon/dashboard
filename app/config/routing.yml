@@ -1,3 +1,12 @@
+login:
+    pattern:   /login
+    defaults:  { _controller: DashboardBundle:Security:login }
+login_check:
+    pattern:   /login_check
+
+logout:
+    path: /logout
+
 dashboard:
     resource: "@DashboardBundle/Resources/config/routing.yml"
     prefix:   /
