@@ -13,7 +13,7 @@ security:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         main:
-            entity: { class: Biruwon\DashboardBundle\Entity\User, property: username }
+            entity: { class: Biruwon\DashboardBundle\Entity\User, property: email }
 
     firewalls:
         dev:
@@ -29,6 +29,7 @@ security:
             form_login:
                 login_path: login
                 check_path: login_check
+                default_target_path: dashboard_home
             logout: ~
             #anonymous: ~
             #http_basic:

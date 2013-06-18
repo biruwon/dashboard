@@ -3,9 +3,14 @@
 namespace Biruwon\DashboardBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware,
+    Symfony\Component\HttpFoundation\RedirectResponse,
+    Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Guzzle\Http\Client,
     Guzzle\Plugin\Oauth\OauthPlugin;
+use Biruwon\DashboardBundle\Form\ProfileType,
+    Biruwon\DashboardBundle\Form\UserType,
+    Biruwon\DashboardBundle\Entity\User;
 
 class DefaultController extends ContainerAware
 {
@@ -66,5 +71,32 @@ class DefaultController extends ContainerAware
                     'form' => $form->createView()
                 )
         );
-     }
+    }
+
+    public function registerAction(Request $request)
+    {
+        $em = $this->container->get('doctrine')->getEntityManager();
+
+        $user = new User();
+        $form = $this->container->get('form.factory')->create(new UserType(), $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $user = $form->getData();
+
+            $em->persist($user);
+            $em->flush();
+            die("tes");
+
+            return new RedirectResponse($this->generateUrl('dashboard_home'));
+        }
+
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:User:registration.html.twig',
+                array(
+                    'form' => $form->createView()
+                )
+        );
+    }
 }

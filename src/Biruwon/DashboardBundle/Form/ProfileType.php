@@ -13,15 +13,15 @@ class ProfileType extends AbstractType
 		$builder->add('image');
 	}
 
-	public function getName()
-	{
-		return 'profile';
-	}
-
 	public function setDefaultOptions(OptionsResolverInterface $resolver){
 
 		$resolver->setDefaults(array(
 			'data_class' => 'Biruwon\DashboardBundle\Entity\Profile'
 		));
+	}
+
+	public function getName()
+	{
+		return 'profile';
 	}
 }
