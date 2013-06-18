@@ -44,7 +44,7 @@ class DefaultController extends ContainerAware
 
     public function showImageAction($id)
     {
-        $em = $this->container->get('doctrine')->getEntityManager();
+        $em = $this->container->get('doctrine')->getManager();
 
         $image = $em->getRepository('Binary')->find($id);
 
@@ -75,7 +75,7 @@ class DefaultController extends ContainerAware
 
     public function registerAction(Request $request)
     {
-        $em = $this->container->get('doctrine')->getEntityManager();
+        $em = $this->container->get('doctrine')->getManager();
 
         $user = new User();
         $form = $this->container->get('form.factory')->create(new UserType(), $user);
@@ -87,9 +87,10 @@ class DefaultController extends ContainerAware
 
             $em->persist($user);
             $em->flush();
-            die("tes");
 
-            return new RedirectResponse($this->generateUrl('dashboard_home'));
+            return new RedirectResponse($this->container->get('router')->generate(
+                'dashboard_profile'
+            ));
         }
 
         return $this->container->get('templating')->renderResponse(
@@ -97,6 +98,13 @@ class DefaultController extends ContainerAware
                 array(
                     'form' => $form->createView()
                 )
+        );
+    }
+
+    public function homeAction()
+    {
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:Default:home.html.twig'
         );
     }
 }

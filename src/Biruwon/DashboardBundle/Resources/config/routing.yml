@@ -1,19 +1,19 @@
 dashboard_twitter:
-    pattern: /twitter/status
+    path: /twitter/status
     defaults: { _controller: DashboardBundle:Default:twitter }
 
 dashboard_facebook:
-    pattern: /facebook/status
+    path: /facebook/status
     defaults: { _controller: DashboardBundle:Default:facebook }
 
 dashboard_profile:
-    pattern: /profile
+    path: /profile
     defaults: { _controller: DashboardBundle:Default:profile }
 
 dashboard_register:
-    pattern: /register
+    path: /register
     defaults: { _controller: DashboardBundle:Default:register }
 
 dashboard_home:
-    pattern: /home
+    path: /home
     defaults: { _controller: DashboardBundle:Default:home }
