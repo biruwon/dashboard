@@ -10,7 +10,9 @@ class ProfileType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('image');
+		$builder
+			->add('image', 'file')
+			->add('update', 'submit');
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver){

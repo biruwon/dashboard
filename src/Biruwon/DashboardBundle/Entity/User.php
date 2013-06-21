@@ -53,7 +53,7 @@ class User implements UserInterface, \Serializable
     private $salt;
 
     /**
-     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
      */
     protected $profile;
 
@@ -188,7 +188,7 @@ class User implements UserInterface, \Serializable
      */
     public function getSalt()
     {
-        return $this->salt;
+        return '';
     }
 
     public function serialize()

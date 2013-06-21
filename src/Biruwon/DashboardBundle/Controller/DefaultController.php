@@ -10,7 +10,8 @@ use Guzzle\Http\Client,
     Guzzle\Plugin\Oauth\OauthPlugin;
 use Biruwon\DashboardBundle\Form\ProfileType,
     Biruwon\DashboardBundle\Form\UserType,
-    Biruwon\DashboardBundle\Entity\User;
+    Biruwon\DashboardBundle\Entity\User,
+    Biruwon\DashboardBundle\Entity\Profile;
 
 class DefaultController extends ContainerAware
 {
@@ -48,8 +49,10 @@ class DefaultController extends ContainerAware
 
         $image = $em->getRepository('Binary')->find($id);
 
-        if(empty($image)) {
-            throw new Exception("Image not found");
+        if(!$image) {
+            throw $this->createNotFoundException(
+                'No image found for id '.$id
+            );
         }
 
         $response = new BinaryFileResponse($image);
@@ -58,15 +61,30 @@ class DefaultController extends ContainerAware
         return $reponse;
     }
 
-    public function profileAction()
+    public function profileAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $profile = $user->getProfile();
+        // $profile = $user->getProfile();
+        $profile = new Profile();
 
         $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $em = $this->container->get('doctrine')->getManager();
+            $user->setProfile($profile);
+            //$em->persist($profile);
+            $em->flush();
+
+            return new RedirectResponse($this->container->get('router')->generate(
+                'dashboard_home'
+            ));
+        }
+
         return $this->container->get('templating')->renderResponse(
-            'DashboardBundle:Default:profile.html.twig',
+            'DashboardBundle:User:profile.html.twig',
                 array(
                     'form' => $form->createView()
                 )
