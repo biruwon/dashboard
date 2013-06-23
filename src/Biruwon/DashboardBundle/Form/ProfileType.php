@@ -10,12 +10,9 @@ class ProfileType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
-		$builder->add('image');
-	}
-
-	public function getName()
-	{
-		return 'profile';
+		$builder
+			->add('image', 'file')
+			->add('update', 'submit');
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver){
@@ -23,5 +20,10 @@ class ProfileType extends AbstractType
 		$resolver->setDefaults(array(
 			'data_class' => 'Biruwon\DashboardBundle\Entity\Profile'
 		));
+	}
+
+	public function getName()
+	{
+		return 'profile';
 	}
 }

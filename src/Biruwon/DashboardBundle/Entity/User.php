@@ -3,15 +3,17 @@
 namespace Biruwon\DashboardBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
- * @ORM\Table()
+ * @ORM\Table(name="User")
  * @ORM\Entity
+ * @UniqueEntity(fields="email", message="Email already taken")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -51,9 +53,14 @@ class User implements UserInterface
     private $salt;
 
     /**
-     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user")
+     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
      */
     protected $profile;
+
+    public function __construct()
+    {
+        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+    }
 
     public function __toString()
     {
@@ -181,6 +188,20 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        return $this->salt;
+        return '';
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id
+        ) = unserialize($serialized);
     }
 }

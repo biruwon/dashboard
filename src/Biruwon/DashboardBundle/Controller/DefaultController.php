@@ -3,9 +3,15 @@
 namespace Biruwon\DashboardBundle\Controller;
 
 use Symfony\Component\DependencyInjection\ContainerAware,
+    Symfony\Component\HttpFoundation\RedirectResponse,
+    Symfony\Component\HttpFoundation\Request,
     Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Guzzle\Http\Client,
     Guzzle\Plugin\Oauth\OauthPlugin;
+use Biruwon\DashboardBundle\Form\ProfileType,
+    Biruwon\DashboardBundle\Form\UserType,
+    Biruwon\DashboardBundle\Entity\User,
+    Biruwon\DashboardBundle\Entity\Profile;
 
 class DefaultController extends ContainerAware
 {
@@ -46,12 +52,14 @@ class DefaultController extends ContainerAware
 
     public function showImageAction($id)
     {
-        $em = $this->container->get('doctrine')->getEntityManager();
+        $em = $this->container->get('doctrine')->getManager();
 
         $image = $em->getRepository('Binary')->find($id);
 
-        if(empty($image)) {
-            throw new Exception("Image not found");
+        if(!$image) {
+            throw $this->createNotFoundException(
+                'No image found for id '.$id
+            );
         }
 
         $response = new BinaryFileResponse($image);
@@ -60,18 +68,68 @@ class DefaultController extends ContainerAware
         return $reponse;
     }
 
-    public function profileAction()
+    public function profileAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $profile = $user->getProfile();
+        // $profile = $user->getProfile();
+        $profile = new Profile();
 
         $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
 
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $em = $this->container->get('doctrine')->getManager();
+            $user->setProfile($profile);
+            //$em->persist($profile);
+            $em->flush();
+
+            return new RedirectResponse($this->container->get('router')->generate(
+                'dashboard_home'
+            ));
+        }
+
         return $this->container->get('templating')->renderResponse(
-            'DashboardBundle:Default:profile.html.twig',
+            'DashboardBundle:User:profile.html.twig',
                 array(
                     'form' => $form->createView()
                 )
         );
-     }
+    }
+
+    public function registerAction(Request $request)
+    {
+        $em = $this->container->get('doctrine')->getManager();
+
+        $user = new User();
+        $form = $this->container->get('form.factory')->create(new UserType(), $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $user = $form->getData();
+
+            $em->persist($user);
+            $em->flush();
+
+            return new RedirectResponse($this->container->get('router')->generate(
+                'dashboard_profile'
+            ));
+        }
+
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:User:registration.html.twig',
+                array(
+                    'form' => $form->createView()
+                )
+        );
+    }
+
+    public function homeAction()
+    {
+        return $this->container->get('templating')->renderResponse(
+            'DashboardBundle:Default:home.html.twig'
+        );
+    }
 }

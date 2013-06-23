@@ -1,8 +1,8 @@
 login:
-    pattern:   /login
+    path:   /login
     defaults:  { _controller: DashboardBundle:Security:login }
 login_check:
-    pattern:   /login_check
+    path:   /login_check
 
 logout:
     path: /logout
@@ -10,6 +10,13 @@ logout:
 dashboard:
     resource: "@DashboardBundle/Resources/config/routing.yml"
     prefix:   /
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /home
+        permanent: true
 
 # Internal routing configuration to handle ESI
 #_internal:

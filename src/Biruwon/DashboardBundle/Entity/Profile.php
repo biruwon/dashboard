@@ -25,7 +25,7 @@ class Profile
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="User", mappedBy="profile")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
      */
     private $user;
 
