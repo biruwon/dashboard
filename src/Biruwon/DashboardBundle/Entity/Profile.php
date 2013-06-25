@@ -30,10 +30,10 @@ class Profile
     private $user;
 
     /**
-     * @var Image
+     * @var Document
      *
-     * @ORM\Column(name="image", type="object")
-     * @Assert\Image()
+     * @ORM\OneToOne(targetEntity="Document")
+     * 
      */
     private $image;
 

@@ -11,6 +11,7 @@ use Guzzle\Http\Client,
 use Biruwon\DashboardBundle\Form\ProfileType,
     Biruwon\DashboardBundle\Form\UserType,
     Biruwon\DashboardBundle\Entity\User,
+    Biruwon\DashboardBundle\Entity\Document,
     Biruwon\DashboardBundle\Entity\Profile;
 
 class DefaultController extends ContainerAware
@@ -47,7 +48,7 @@ class DefaultController extends ContainerAware
     {
         $em = $this->container->get('doctrine')->getManager();
 
-        $image = $em->getRepository('Binary')->find($id);
+        $image = $em->getRepository('Document')->find($id);
 
         if(!$image) {
             throw $this->createNotFoundException(
@@ -66,16 +67,24 @@ class DefaultController extends ContainerAware
         $user = $this->container->get('security.context')->getToken()->getUser();
         // $profile = $user->getProfile();
         $profile = new Profile();
+        $document = new Document();
 
         $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
+        // $form = $this->container->get('form.factory')->createBuilder('form', $document)
+        //         ->add('file')
+        //         ->add('update', 'submit')
+        //         ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
             $em = $this->container->get('doctrine')->getManager();
+
+            $em->persist($document);
+            $em->flush();
+            $profile->setImage($document);
             $user->setProfile($profile);
-            //$em->persist($profile);
             $em->flush();
 
             return new RedirectResponse($this->container->get('router')->generate(
