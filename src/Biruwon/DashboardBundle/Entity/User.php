@@ -6,6 +6,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
+use Biruwon\DashboardBundle\Entity\Profile;
+
 /**
  * User
  *
@@ -53,13 +55,14 @@ class User implements UserInterface, \Serializable
     private $salt;
 
     /**
-     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist"})
      */
     protected $profile;
 
     public function __construct()
     {
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->profile = new Profile();
     }
 
     public function __toString()

@@ -6,24 +6,24 @@ use Symfony\Component\Form\AbstractType,
 	Symfony\Component\Form\FormBuilderInterface,
 	Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ProfileType extends AbstractType
+class DocumentType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('image', new DocumentType())
-			->add('update', 'submit');
+			->add('file')
+		;
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver){
 
 		$resolver->setDefaults(array(
-			'data_class' => 'Biruwon\DashboardBundle\Entity\Profile'
+			'data_class' => 'Biruwon\DashboardBundle\Entity\Document'
 		));
 	}
 
 	public function getName()
 	{
-		return 'profile';
+		return 'document';
 	}
 }

@@ -1,7 +1,7 @@
 {{ form_start(form) }}
 	{{ form_errors(form) }}
 
-	{{ form_row(form.image) }}
+	{{ form_row(form.image.file) }}
 	Username: {{ app.user.username }}
 	{{ form_row(form.update) }}
 

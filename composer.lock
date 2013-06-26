@@ -283,12 +283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "04d554f6d4a4dba1e3d6b3add2a7ac66f51bbfed"
+                "reference": "e6a90e32ac9ddd7d3b7fe99be085c928c6e08da2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/04d554f6d4a4dba1e3d6b3add2a7ac66f51bbfed",
-                "reference": "04d554f6d4a4dba1e3d6b3add2a7ac66f51bbfed",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/e6a90e32ac9ddd7d3b7fe99be085c928c6e08da2",
+                "reference": "e6a90e32ac9ddd7d3b7fe99be085c928c6e08da2",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-06-11 06:36:02"
+            "time": "2013-06-23 17:27:09"
         },
         {
             "name": "incenteev/composer-parameter-handler",
