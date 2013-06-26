@@ -17,3 +17,7 @@ dashboard_register:
 dashboard_home:
     path: /home
     defaults: { _controller: DashboardBundle:Default:home }
+
+dashboard_showImage:
+    path: /profile/photo/{id}
+    defaults: { _controller: DashboardBundle:Default:showImage }

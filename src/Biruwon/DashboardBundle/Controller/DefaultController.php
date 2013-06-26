@@ -65,7 +65,7 @@ class DefaultController extends ContainerAware
     public function profileAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $profile = new Profile();
+        $profile = $user->getProfile();
 
         $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
 
@@ -122,8 +122,13 @@ class DefaultController extends ContainerAware
 
     public function homeAction()
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
         return $this->container->get('templating')->renderResponse(
-            'DashboardBundle:Default:home.html.twig'
+            'DashboardBundle:Default:home.html.twig',
+                array(
+                    'user' => $user
+                )
         );
     }
 }

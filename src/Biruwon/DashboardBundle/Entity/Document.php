@@ -13,8 +13,10 @@ use Symfony\Component\Validator\Constraints as Assert,
 class Document
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     public $id;
@@ -30,6 +32,39 @@ class Document
     private $file;
 
     private $temp;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Document
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 
     /**
      * Sets file.
@@ -69,7 +104,7 @@ class Document
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir().'/'.$this->path;
+            : '/'.$this->getUploadDir().'/'.$this->id.'.'.$this->path;
     }
 
     protected function getUploadRootDir()
