@@ -65,15 +65,9 @@ class DefaultController extends ContainerAware
     public function profileAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        // $profile = $user->getProfile();
         $profile = new Profile();
-        $document = new Document();
 
         $form = $this->container->get('form.factory')->create(new ProfileType(), $profile);
-        // $form = $this->container->get('form.factory')->createBuilder('form', $document)
-        //         ->add('file')
-        //         ->add('update', 'submit')
-        //         ->getForm();
 
         $form->handleRequest($request);
 
@@ -81,10 +75,8 @@ class DefaultController extends ContainerAware
 
             $em = $this->container->get('doctrine')->getManager();
 
-            $em->persist($document);
-            $em->flush();
-            $profile->setImage($document);
             $user->setProfile($profile);
+            $em->persist($user);
             $em->flush();
 
             return new RedirectResponse($this->container->get('router')->generate(

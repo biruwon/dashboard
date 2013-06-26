@@ -53,7 +53,7 @@ class User implements UserInterface, \Serializable
     private $salt;
 
     /**
-     * @ORM\OneToOne(targetEntity="Profile", mappedBy="user", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Profile", cascade={"persist"})
      */
     protected $profile;
 

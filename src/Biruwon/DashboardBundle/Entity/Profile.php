@@ -23,17 +23,10 @@ class Profile
     private $id;
 
     /**
-     * @var User
-     *
-     * @ORM\OneToOne(targetEntity="User", inversedBy="profile")
-     */
-    private $user;
-
-    /**
      * @var Document
      *
-     * @ORM\OneToOne(targetEntity="Document")
-     * 
+     * @ORM\OneToOne(targetEntity="Document", cascade={"persist"})
+     *
      */
     private $image;
 
@@ -46,29 +39,6 @@ class Profile
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set user
-     *
-     * @param User $user
-     * @return Profile
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 
     /**
