@@ -1,4 +1,4 @@
-{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% extends '::baseMopa.html.twig' %}
 
 {% block navbar %}{% endblock %}
 
@@ -7,6 +7,8 @@
 Username: {{ user.username }}
 Email: {{ user.email }}
 
-<img src="{{ user.profile.image.webPath }}" width="50px" height="70px"/>
+{% if user.profile.image is not null %}
+	<img src="{{ user.profile.image.webPath }}" width="50px" height="70px"/>
+{% endif %}
 
 {% endblock %}

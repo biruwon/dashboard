@@ -1,18 +1,98 @@
-{% if error %}
-    <div>{{ error.message }}</div>
-{% endif %}
+{% extends '::baseMopa.html.twig' %}
 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+{% block head_style %}
+{{ parent() }}
+<style type="text/css">
+    html,
+      body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+      }
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
 
-    {#
-        If you want to control the URL the user is redirected to on success (more details below)
-        <input type="hidden" name="_target_path" value="/account" />
-    #}
+      /* Set the fixed height of the footer here */
+      #push,
+      footer {
+        height: 60px;
+      }
+      footer {
+        background-color: #f5f5f5;
+      }
 
-    <button type="submit">login</button>
-</form>
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+{% endblock %}
+
+{% block navbar %}{% endblock %}
+{% block page_header %}{% endblock %}
+{% block content_sidebar %}{% endblock %}
+
+{% block content %}
+
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form class="form-signin" action="{{ path('login_check') }}" method="post">
+        <h2 class="form-signin-heading">Please Login to do some awesome </h2>
+        <input class="input-block-level" placeholder="Username" type="text" id="username" name="_username" value="{{ last_username }}" />
+
+        <input class="input-block-level" placeholder="Password" type="password" id="password" name="_password" />
+
+        {#
+            If you want to control the URL the user is redirected to on success (more details below)
+            <input type="hidden" name="_target_path" value="/account" />
+        #}
+
+        <button class="btn btn-large btn-primary" type="submit">Login</button>
+    </form>
+
+{% endblock %}
