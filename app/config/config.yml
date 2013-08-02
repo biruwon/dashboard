@@ -30,7 +30,7 @@ assetic:
     #java: /usr/bin/java
     filters:
         less:
-            node: /usr/bin/nodejs
+            node: [ %node% ]
             node_paths: [/usr/local/lib/node_modules]
             apply_to: "\.less$"
         cssrewrite: ~
