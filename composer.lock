@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6901517e6f826c257f74d3160b4094ea",
+    "hash": "96b5fe223c1b714a0e79c117a2a18cba",
     "packages": [
         {
             "name": "doctrine/common",
@@ -283,12 +283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "9faeeaf4baa2c9e1c1c4848eea62818eeaa54f02"
+                "reference": "c079683bb581a7da9ccd394adb26c27f457d1307"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9faeeaf4baa2c9e1c1c4848eea62818eeaa54f02",
-                "reference": "9faeeaf4baa2c9e1c1c4848eea62818eeaa54f02",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c079683bb581a7da9ccd394adb26c27f457d1307",
+                "reference": "c079683bb581a7da9ccd394adb26c27f457d1307",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2013-07-18 20:50:44"
+            "time": "2013-07-30 22:07:23"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -542,26 +542,26 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1.5.0"
+                "reference": "1.6.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1.5.0",
-                "reference": "1.5.0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1.6.0",
+                "reference": "1.6.0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
-                "psr/log": ">=1.0,<2.0"
+                "psr/log": "~1.0"
             },
             "require-dev": {
                 "doctrine/couchdb": "dev-master",
                 "mlehner/gelf-php": "1.0.*",
-                "raven/raven": "0.3.*"
+                "raven/raven": "0.5.*"
             },
             "suggest": {
                 "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
@@ -573,7 +573,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4.x-dev"
+                    "dev-master": "1.6.x-dev"
                 }
             },
             "autoload": {
@@ -600,7 +600,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-04-23 10:09:48"
+            "time": "2013-07-28 22:38:30"
         },
         {
             "name": "mopa/bootstrap-bundle",
@@ -609,12 +609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "a5ed93861a81121c45a9b75f165a2dc2026ffae6"
+                "reference": "149b3ec8e565821f44c7c19edce1ced7985a00f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/a5ed93861a81121c45a9b75f165a2dc2026ffae6",
-                "reference": "a5ed93861a81121c45a9b75f165a2dc2026ffae6",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/149b3ec8e565821f44c7c19edce1ced7985a00f9",
+                "reference": "149b3ec8e565821f44c7c19edce1ced7985a00f9",
                 "shasum": ""
             },
             "require": {
@@ -627,7 +627,7 @@
                 "knplabs/knp-menu-bundle": "2.0.*",
                 "knplabs/knp-paginator-bundle": "dev-master",
                 "mopa/bootstrap-sandbox-bundle": "~2.3",
-                "twitter/bootstrap": "2.*"
+                "twbs/bootstrap": "2.*"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -663,7 +663,7 @@
                 "form",
                 "template"
             ],
-            "time": "2013-07-16 11:49:01"
+            "time": "2013-08-01 10:13:49"
         },
         {
             "name": "mopa/composer-bridge",
@@ -946,16 +946,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "v2.3.0-beta1"
+                "reference": "v2.3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/v2.3.0-beta1",
-                "reference": "v2.3.0-beta1",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/v2.3.0",
+                "reference": "v2.3.0",
                 "shasum": ""
             },
             "require": {
-                "kriswallsmith/assetic": ">=1.1-beta1,<1.2",
+                "kriswallsmith/assetic": ">=1.1,<2.0",
                 "php": ">=5.3.0",
                 "symfony/framework-bundle": ">=2.1,<3.0"
             },
@@ -1000,7 +1000,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2013-05-13 15:39:47"
+            "time": "2013-05-16 05:32:23"
         },
         {
             "name": "symfony/icu",
@@ -1272,6 +1272,33 @@
             "time": "2013-07-17 06:22:21"
         },
         {
+            "name": "twbs/bootstrap",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "7f0b487477bc63bef488dff14a0c28ea2106286b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7f0b487477bc63bef488dff14a0c28ea2106286b",
+                "reference": "7f0b487477bc63bef488dff14a0c28ea2106286b",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
+            "homepage": "http://twbs.github.com/bootstrap/",
+            "keywords": [
+                "bootstrap",
+                "css"
+            ],
+            "time": "2013-07-31 19:36:59"
+        },
+        {
             "name": "twig/extensions",
             "version": "v1.0.0",
             "source": {
@@ -1366,33 +1393,6 @@
                 "templating"
             ],
             "time": "2013-06-06 06:06:01"
-        },
-        {
-            "name": "twitter/bootstrap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twitter/bootstrap.git",
-                "reference": "d991ef2ab1b4d156c7e5d33d052d66f8eaafc460"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twitter/bootstrap/zipball/d991ef2ab1b4d156c7e5d33d052d66f8eaafc460",
-                "reference": "d991ef2ab1b4d156c7e5d33d052d66f8eaafc460",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "description": "Sleek, intuitive, and powerful front-end framework for faster and easier web development.",
-            "homepage": "http://twitter.github.com/bootstrap/",
-            "keywords": [
-                "bootstrap",
-                "css"
-            ],
-            "time": "2013-06-20 19:11:39"
         }
     ],
     "packages-dev": [
@@ -1405,7 +1405,7 @@
     "stability-flags": {
         "guzzle/guzzle": 20,
         "mopa/bootstrap-bundle": 20,
-        "twitter/bootstrap": 20
+        "twbs/bootstrap": 20
     },
     "platform": {
         "php": ">=5.3.3"
