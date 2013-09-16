@@ -1,8 +1,3 @@
-{% extends '::baseMopa.html.twig' %}
-
-{% block navbar %}{% endblock %}
-
-{% block content_content %}
 
 Username: {{ user.username }}
 Email: {{ user.email }}
@@ -10,5 +5,3 @@ Email: {{ user.email }}
 {% if user.profile.image is not null %}
 	<img src="{{ user.profile.image.webPath }}" width="50px" height="70px"/>
 {% endif %}
-
-{% endblock %}
