@@ -1,8 +1,61 @@
-{{ form_start(form) }}
-	{{ form_errors(form) }}
+{% extends '@Dashboard/layout.html.twig' %}
 
-	{{ form_row(form.image.file) }}
-	Username: {{ app.user.username }}
-	{{ form_row(form.update) }}
+{% block stylesheets %}
+    {{ parent() }}
+    <style type="text/css">
 
-{{ form_end(form) }}
+    	.btn-file {
+    	    position: relative;
+    	    overflow: hidden;
+    	}
+    	.btn-file input[type=file] {
+    	    position: absolute;
+    	    top: 0;
+    	    right: 0;
+    	    min-width: 100%;
+    	    min-height: 100%;
+    	    font-size: 999px;
+    	    text-align: right;
+    	    filter: alpha(opacity=0);
+    	    opacity: 0;
+    	    background: red;
+    	    cursor: inherit;
+    	    display: block;
+    	}
+
+    </style>
+{% endblock %}
+
+{% block wrapper %}
+
+	{{ form_start(form) }}
+		{{ form_errors(form) }}
+
+		Username: {{ app.user.username }}
+
+		<div class="form-horizontal">
+			<div class="form-group">
+			    <div class="col-lg-offset-2 col-lg-2 ">
+			    	<span class="btn btn-success btn-file">
+			    	<i class="glyphicon glyphicon-plus"></i>
+			        	{{ form_row(form.image.file) }}
+			        <span>
+			    </div>
+			</div>
+
+			<div class="form-group">
+			    <div class="col-lg-offset-2 col-lg-10">
+			      {{ form_row(form.update) }}
+			    </div>
+			</div>
+		</div>
+		
+	{{ form_end(form) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+{% endblock %}

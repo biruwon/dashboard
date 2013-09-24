@@ -12,7 +12,12 @@ class ProfileType extends AbstractType
 	{
 		$builder
 			->add('image', new DocumentType())
-			->add('update', 'submit');
+			->add('update', 'submit', array(
+				'attr' => array(
+					'class' => 'btn btn-primary'
+					)
+				)
+			);
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver){
