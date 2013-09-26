@@ -87,7 +87,7 @@ class DefaultController extends ContainerAware
             $em->flush();
 
             return new RedirectResponse($this->container->get('router')->generate(
-                'dashboard_home'
+                'dashboard_profile'
             ));
         }
 
