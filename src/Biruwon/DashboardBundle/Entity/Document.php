@@ -31,6 +31,9 @@ class Document
      */
     private $file;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $temp;
 
     /**
