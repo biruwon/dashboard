@@ -15,3 +15,6 @@ src/Biruwon/DashboardBundle/Resources/config/twitter.conf.yml
 
 # Backup files
 *.php~
+
+# Deploy file
+!/bin/deploy.sh
